@@ -9,12 +9,15 @@ Pick a resource, for example `unicorns`.
 
 General:
 * Create a single overall express app that uses a `lib` folder with a `models` folder and a `routes` folder.
-* Create separate folders for `unit` and `e2e` tests and remember to add `--recursive` to `mocha` (and add to
-debug as well!)
+* Create separate folders for `unit` and `e2e` tests
 * Create `lib/connect.js`
 * Open connection mongoose in:
     * `server.js`
     * `test/e2e/db.js` 
+* Modify `scripts` in `package.json`
+    * add `--recursive` to running mocha
+    * create separate `test:unit` and `test:e2e` scripts
+* (Don't forget to modify test path or add `--recursive` to mocha debug
 
 For your resource:
 
