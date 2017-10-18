@@ -45,7 +45,15 @@ describe('amino acid model', () => {
         });
         
         it('requires that sideChainFuncGroups be an enum value', () => {
-           
+            const asparagine = new AA({
+                name: 'asparagine',
+                abbr1: 'a',
+                abbr3: 'asn',
+                polar: true,
+                sideChainFuncGroups: 'amide',
+                canonical: true
+            });
+            const {errors} = asparagine.validateSync();
         });
     });
 });
