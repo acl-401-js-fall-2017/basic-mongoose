@@ -43,5 +43,20 @@ describe('amino acid model', () => {
             assert.equal(errors.abbr1.kind, 'regexp');
             assert.equal(errors.abbr3.kind, 'regexp');
         });
+        
+        it('requires that polar be boolean', () => {
+            const asparagine = new AA({
+                name: 'asparagine',
+                abbr1: 'a',
+                abbr3: 'asn',
+                polar: 'yes',
+                sideChainFuncGroups: 'amide',
+                canonical: true
+            });
+            assert.ok(asparagine instanceof AA);
+            const {errors} = asparagine.validateSync();
+            assert.equal(errors.polar.kind, 'type');
+
+        });
     });
 });
