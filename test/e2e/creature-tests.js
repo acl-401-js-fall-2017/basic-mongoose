@@ -25,7 +25,19 @@ describe('creature api', () => {
                 });
         });
 
-        
+
+    });
+
+    describe('GET', () => {
+        it('gets creature from db', () => {
+            return request.post('/api/creatures')
+                .send(creature)
+                .then( () => request.get('/api/creatures'))
+                .then( got => {
+                    console.log(got.body);
+                    assert.ok(got.body);
+                });
+        });
     });
 
 });
