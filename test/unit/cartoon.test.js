@@ -13,6 +13,14 @@ describe('Cartoon Model', ()=> {
         assert.equal(cartoon.validateSync(), undefined);
     });
 
+    it('bad model', () => {
+        const cartoon = new Cartoon({
+            name: 1991,
+            releaseYear: 'Rugrats'
+        });
+        assert.deepEqual(cartoon.validateSync().errors.releaseYear.kind, 'Number'); 
+    });
+
 
 
 });
