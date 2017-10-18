@@ -60,6 +60,16 @@ describe ('cities API CRUD', () => {
             });
     });
 
+    it.skip('Gets entries by id', () => { 
+        return request.post('/api/cities')
+            .send(portland)
+            .then( (res)=>{
+                return request.get(`/api/cities/${res.body._id}`);
+            })
+            .then((res) => {
+                assert.equal(res.name, portland.name);
+            });
+    });
 
 
 
