@@ -90,9 +90,26 @@ describe ('books API', () => {
 
     });
 
-    
-
-
-
+    xdescribe('PUT', () => {
+        
+        let savedBook =null;
+        before(() => {
+            const bookOfTales = { title: 'alchemist', pages: 220};
+            return request.post('/api/books')
+                .send(bookOfTales)
+                .then(res => {
+                    savedBook = res.body;
+                });
+        });
+     
+        it('changes a saved book with id', () => {
+             
+            return request.put(`/api/books/${savedBook._id}`)
+                .send({ title: 'recentlyEditedBook', pages:255})
+                .then(res => {
+                    assert.deepEqual(res.body, { updated: true });
+                });  
+        });
+    });
     
 });
