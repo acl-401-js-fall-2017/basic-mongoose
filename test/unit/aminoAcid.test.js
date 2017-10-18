@@ -15,4 +15,19 @@ describe('amino acid model', () => {
         const invalid = asparagine.validateSync();
         assert.ok(!invalid);
     });
+    
+    describe('validation: ', () => {
+        it('requires the name field', () => {
+            const asparagine = new AA({
+                name: 'asparagine',
+                abbr1: 'a',
+                abbr3: 'asn',
+                polar: true,
+                sideChainFuncGroups: 'amide',
+                canonical: true
+            });
+            const {errors} = asparagine.validateSync();
+            assert.equal(errors.name.kind === 'required');
+        });
+    });
 });
