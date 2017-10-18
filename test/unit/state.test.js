@@ -11,23 +11,23 @@ describe('State Model', () => {
             rating: 9,
             attractions: [{
                 name: 'zoo',
-                cost: -8
+                cost: 8
             }]
 
         });
-        state.validate();
+        assert.equal(state.validateSync(), undefined);
     });
 
     it('name must be OR or WA', () => {
-        const state = new State({name: 'orygun'}, {name: 'Oregon'});
+        const state = new State({name: 'orygun'}); //, {name: 'Oregon'})
         const { errors } = state.validateSync();
         assert.equal(errors.name.kind, 'enum');
     });
 
     it('rating must be number', () => {
-        const state = new State({rating: 'true'});
+        const state = new State({rating: -3});
         const { errors } = state.validateSync();
-        assert.equal(errors.rating.kind, 'Number');
+        assert.equal(errors.rating.kind, 'min');
     });
 
     it('cost must be positive', () => {
