@@ -22,6 +22,24 @@ describe('Cartoons API', ()=>{
             });
 
     });
+    
+    it('Shoud get a cartoon by id', ()=>{
+        let cartoon;
+        let id;
 
+        return request.post('/api/cartoons')
+            .send(rugRats)
+            .then(res => {
+                cartoon = res.body;
+                id = cartoon._id;
+            })
+            .then(()=>{
+                return request.get(`/api/cartoons/${id}`)
+                    .then(res =>{
+                        assert.deepEqual(res.body, rugRats);
+                    });
+            });
+
+    });
 
 });
