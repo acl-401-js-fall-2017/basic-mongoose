@@ -16,4 +16,11 @@ describe('Footie Model', () => {
 
         assert.ok(!footie.validateSync());
     });
+
+    it('required fields', () => {
+        const footie = new Footie({});
+        const { errors } = footie.validateSync();
+        assert.equal(errors['playerName'].kind, 'required');
+        // assert.equal(errors['teams.name'].kind, 'required');
+    });
 });
