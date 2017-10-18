@@ -26,12 +26,12 @@ For your resource:
 * Create a schema and model: 
     * Pick one or two validations that the schema will have. 
     * Unit test a successful model and test validations fail correctly.
-    * Implement the schmea and validation
+    * Implement the schema and validation
     * Also include in your schema:
-        * Include a complex object property (a property that has subfields, like an address with city, state, zip)
+        * Include a complex object property (a property that has sub fields, like an address with city, state, zip)
         * An array property (a property that holds zero or more of some values)
 * Create HTTP REST routes:
-    * Write E2E API tests adn routes for all of the exposed routes
+    * Write E2E API tests and routes for all of the exposed routes
         * require model in route
     * Routes are:
         * `GET /resources` list ([]) of all the resources
