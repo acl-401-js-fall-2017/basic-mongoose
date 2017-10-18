@@ -24,8 +24,6 @@ describe('creature api', () => {
                     assert.ok(res.body._id);
                 });
         });
-
-
     });
 
     describe('GET', () => {
@@ -34,10 +32,26 @@ describe('creature api', () => {
                 .send(creature)
                 .then( () => request.get('/api/creatures'))
                 .then( got => {
-                    console.log(got.body);
-                    assert.ok(got.body);
+                    assert.equal(got.body[0].name, 'vampire criminal'); 
                 });
         });
+
+        it('gets creature by id', () => {
+            let saved = null;
+            return request.post('/api/creatures')
+                .send(creature)
+                .then( res => {
+                    saved = res.body;
+                    return request.get(`/api/creatures/${saved._id}`);
+                })
+                .then( res => {
+                    console.log('got.name is', res.name);
+                    console.log('saved.name is', saved.name);
+                    assert.equal(res.body.name, saved.name);
+                });
+        });
+
     });
+
 
 });
