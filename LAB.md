@@ -31,7 +31,7 @@ For your resource:
         * Include a complex object property (a property that has sub fields, like an address with city, state, zip)
         * An array property (a property that holds zero or more of some values)
 * Create HTTP REST routes:
-    * Write E2E API tests adn routes for all of the exposed routes
+    * Write E2E API tests and routes for all of the exposed routes
         * require model in route
     * Routes are:
         * `GET /resources` list ([]) of all the resources
