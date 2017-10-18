@@ -39,8 +39,9 @@ describe('amino acid model', () => {
                 canonical: true
             });
             assert.ok(asparagine instanceof AA);
-            const invalid = asparagine.validateSync();
-            assert.ok(!invalid);
+            const {errors} = asparagine.validateSync();
+            assert.equal(errors.abbr1.kind, 'regexp');
+            assert.equal(errors.abbr3.kind, 'regexp');
         });
     });
 });
