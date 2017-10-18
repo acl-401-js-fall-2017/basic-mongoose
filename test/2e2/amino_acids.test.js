@@ -24,7 +24,7 @@ describe('amino acid route', () => {
                             abbrs: {
                                 abbr1: 'arg',
                                 abbr3: 'r'
-                            }
+                            },
                             _id: saved._id
                         }
                     );
