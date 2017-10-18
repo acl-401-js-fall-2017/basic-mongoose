@@ -13,6 +13,17 @@ const arg = {
     canonical: true
 };
 
+const val = {
+    name: 'valine',
+    abbrs: {
+        abbr1: 'v',
+        abbr3: 'val'
+    },
+    polar: false,
+    group: 'nonpolar',
+    canonical: true
+};
+
 describe('amino acid route', () => {
 
     describe('post', () => {
@@ -28,6 +39,24 @@ describe('amino acid route', () => {
     });
 
     describe('get' , () => {
+        it('gets all items', () => {
+
+            const saveTwo = [
+                request.post('/api/amino-acids').send(arg),
+                request.post('/api/amino-acids').send(val)
+            ];
+
+            return Promise.all(saveTwo)
+                .then(savedData => {
+                    const savedTwo = JSON.parse(savedDate.text);
+                    return request.get('/api/amino-acids')
+                        .then(gottenData => {
+                            const gottenArr = JSON.parse(gottenData.text);
+                            assert.deepInclude(gottenArr, savedTwo[0]);
+                            assert.deepInclude(gottenArr, savedTwo[1]);
+                        });
+                });
+        });
     });
     
     describe('get:id', () => {
