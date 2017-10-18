@@ -40,7 +40,6 @@ describe('amino acid route', () => {
 
     describe('get' , () => {
         it('gets all items', () => {
-
             const saveTwo = [
                 request.post('/api/amino-acids').send(arg),
                 request.post('/api/amino-acids').send(val)
@@ -48,10 +47,10 @@ describe('amino acid route', () => {
 
             return Promise.all(saveTwo)
                 .then(savedData => {
-                    const savedTwo = JSON.parse(savedDate.text);
+                    const savedTwo = savedData.map(data => JSON.parse(data.text));
                     return request.get('/api/amino-acids')
                         .then(gottenData => {
-                            const gottenArr = JSON.parse(gottenData.text);
+                            const gottenArr = gottenData.body;
                             assert.deepInclude(gottenArr, savedTwo[0]);
                             assert.deepInclude(gottenArr, savedTwo[1]);
                         });
@@ -87,7 +86,7 @@ describe('amino acid route', () => {
                         .then(() => {
                             return request.get(`/api/amino-acids/${saved._id}`)
                                 .catch(err => {
-                                    assert.equal(err.status, 404)
+                                    assert.equal(err.status, 404);
                                 });
                         });
                 });
