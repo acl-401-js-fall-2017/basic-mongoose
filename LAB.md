@@ -8,16 +8,18 @@ This assignment has you practicing full CRUD for a validated resource using Expr
 Pick a resource, for example `unicorns`.
 
 General:
-* Create an express app that uses a `lib` folder with a `models` folder and a `routes` folder.
-* Create separate folders for `unit` and `e2e` tests in the `test` directory
-* Create `lib/connect.js`
-* Open connection mongoose in:
-    * `server.js`
-    * `test/e2e/db.js` 
-* Modify `scripts` in `package.json`
-    * add `--recursive` to running mocha
-    * create separate `test:unit` and `test:e2e` scripts
-* (Don't forget to modify test path or add `--recursive` to mocha debug
+1. Testing changes
+   * Create separate folders for `unit` and `e2e` tests in the `test` directory
+   * Modify `scripts` in `package.json`
+      * add `--recursive` to running mocha
+      * create separate `test:unit` and `test:e2e` scripts
+   * (Don't forget to modify test path or add `--recursive` to mocha debug
+2. Connecting to mongodb with mongoose:
+   * Create `lib/connect.js`
+   * Open connection mongoose in:
+      * `server.js`
+      * `test/e2e/db.js` 
+3. Create an express app that uses a `lib` folder with a `models` folder and a `routes` folder.
 
 For your resource:
 
