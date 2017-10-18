@@ -36,7 +36,7 @@ describe('Cartoons API', ()=>{
             .then(()=>{
                 return request.get(`/api/cartoons/${id}`)
                     .then(res =>{
-                        assert.deepEqual(res.body, rugRats);
+                        assert.deepEqual(res.body, cartoon);
                     });
             });
 
