@@ -25,7 +25,7 @@ describe('clients REST api', () => {
     });
 
     
-    it('gets by id', () => {
+    it.skip('gets by id', () => {
         let client = null;
         return request.post('/clients')
             .send(beth)
