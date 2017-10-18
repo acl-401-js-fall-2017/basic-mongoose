@@ -48,11 +48,18 @@ describe('amino acid route', () => {
     describe('delete', () => {
         it('removes objects from the db', () => {
             return request.post('/api/amino-acids')
+                .send(arg)
                 .then(savedData => {
-                    const saved = JSON.parse(savedData);
+                    const saved = JSON.parse(savedData.text);
                     return request.del(`/api/amino-acids/${saved._id}`)
                         .then(delRes => {
-                            assert.deepEqual(JSON.parse(delRes), {removed: true});
+                            assert.deepEqual(JSON.parse(delRes.text), {removed: true});
+                        })
+                        .then(() => {
+                            return request.get(`/api/amino-acids/${saved._id}`)
+                                .catch(err => {
+                                    assert.equal(err.status, 404)
+                                });
                         });
                 });
         });
