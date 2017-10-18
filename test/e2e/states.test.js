@@ -26,7 +26,7 @@ describe('states API', () => {
             });
     });
 
-    it.only('gets by id', () => {
+    it('gets by id', () => {
         const states = {name: 'California', ranking: 6};
         let state = null;
         return request.post('/api/states')
@@ -38,6 +38,38 @@ describe('states API', () => {
             .then(res => {
                 assert.deepEqual(res.body, state);
             });
+    });
+
+    it.only('get all', () => {
+        const newVacation = {
+            name: 'Oregon',
+            address: {
+                street:'255 West Ave', 
+                city:'Ashland'
+            }, 
+            visited: 'July 30',
+            ranking: 6,
+            attractions: [
+                {name: 'theater', cost: 45}, 
+                {name: 'b and b', cost: 125}
+            ]
+        };
+        const posts = [states, newVacation].map(state => {
+            return request.post('/api/states')
+                .send(state)
+                .then(res => res.body);
+        });
+
+        let saved = null;
+        return Promise.all(posts)
+            .then(_saved => {
+                saved = _saved;
+                return request.get('/api/states');
+            })
+            .then(res => {
+                assert.deepEqual(res.body, saved);
+            });
+
 
     });
 
