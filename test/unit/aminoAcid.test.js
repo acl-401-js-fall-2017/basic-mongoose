@@ -28,5 +28,19 @@ describe('amino acid model', () => {
             const {errors} = asparagine.validateSync();
             assert.equal(errors.name.kind, 'required');
         });
+
+        it('requires abb1 to be a single character and abb3 to be a three char string; both may be letters only', () => {
+            const asparagine = new AA({
+                name: 'asparagine',
+                abbr1: 'adfweq',
+                abbr3: 'a23',
+                polar: true,
+                sideChainFuncGroups: 'amide',
+                canonical: true
+            });
+            assert.ok(asparagine instanceof AA);
+            const invalid = asparagine.validateSync();
+            assert.ok(!invalid);
+        });
     });
 });
