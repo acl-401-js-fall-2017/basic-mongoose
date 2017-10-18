@@ -50,10 +50,10 @@ describe('amino acid model', () => {
                 abbr1: 'a',
                 abbr3: 'asn',
                 polar: true,
-                sideChainFuncGroups: 'amide',
+                sideChainFuncGroups: 'bloop',
                 canonical: true
             });
-            const {errors} = asparagine.validateSync();
+            assert.ok(!asparagine.sideChainFuncGroups);
         });
     });
 });
