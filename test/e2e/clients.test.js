@@ -1,36 +1,26 @@
-// const Client = require('../../lib/models/client');
-// const client = require('../lib/routes/clients');
-// const db = require('db');
-const chai = require('chai');
-const { assert } = require('chai');
-const chaiHttp = require('chai-http');
-chai.use(chaiHttp);
-
-const connection = require('mongoose').connection;
-const app = require('../../lib/app');
-const request = chai.request(app);
-
-require('../../lib/connect');
-process.env.MONGODB_URI = 'mongodb://localhost:27017/testE2e';
-
+const request = require('./request');
+const mongoose = require('mongoose');
+const assert = require('chai').assert;
 
 
 describe('clients REST api', () => {
-    beforeEach(() => connection.dropDatabase());
+    beforeEach(() => mongoose.connection.dropDatabase());
+
     const beth = {
         name: 'Beth',
         age: 30
     };
 
     
-    it('saves a client', () => {
+    it('saves a client with id', () => {
             
-        return request.post('/clients')
+        return request.post('/api/clients')
             .send(beth)
             .then(res => {
                 const client = res.body;
-                assert.ok(client.name);
+                assert.ok(client._id);
                 assert.equal(client.name, beth.name);
+            
             });
     });
 

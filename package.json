@@ -1,7 +1,6 @@
 {
   "name": "node-project",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
@@ -27,5 +26,19 @@
   "dependencies": {
     "express": "^4.16.2",
     "mongoose": "^4.12.3"
-  }
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChristinaMills/basic-mongoose.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/ChristinaMills/basic-mongoose/issues"
+  },
+  "homepage": "https://github.com/ChristinaMills/basic-mongoose#readme",
+  "description": ""
 }
