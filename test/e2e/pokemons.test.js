@@ -6,7 +6,7 @@ describe('Pokemon API', () => {
 
     beforeEach(() => mongoose.dropDatabase() );
 
-    const pokemons = {
+    const Flaaffy = {
         name: 'Flaaffy',
         type: 'Electric'
     };
@@ -14,11 +14,11 @@ describe('Pokemon API', () => {
     it('saves with id', () => {
 
         return request.post('/api/pokemons')
-            .send(pokemons)
+            .send(Flaaffy)
             .then(res => {
                 const pokemon = res.body;
                 assert.ok(pokemon._id);
-                assert.equal(pokemon.name, pokemons.name);
+                assert.equal(pokemon.name, Flaaffy.name);
             });
     });
 });
