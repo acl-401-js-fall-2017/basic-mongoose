@@ -27,12 +27,12 @@ describe('creature api', () => {
     });
 
     describe('GET', () => {
-        it('gets creature from db', () => {
+        it.only('gets creature from db', () => {
             return request.post('/api/creatures')
                 .send(creature)
-                .then( () => request.get('/api/creatures'))
-                .then( got => {
-                    assert.equal(got.body[0].name, 'vampire criminal'); 
+                .then(({body}) => request.get(`/api/creatures/${body._id}`))
+                .then(({body}) => {
+                    assert.equal(body.name, 'vampire criminal'); 
                 });
         });
 
