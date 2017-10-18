@@ -19,7 +19,6 @@ describe('amino acid model', () => {
     describe('validation: ', () => {
         it('requires the name field', () => {
             const asparagine = new AA({
-                name: 'asparagine',
                 abbr1: 'a',
                 abbr3: 'asn',
                 polar: true,
@@ -27,7 +26,7 @@ describe('amino acid model', () => {
                 canonical: true
             });
             const {errors} = asparagine.validateSync();
-            assert.equal(errors.name.kind === 'required');
+            assert.equal(errors.name.kind, 'required');
         });
     });
 });
