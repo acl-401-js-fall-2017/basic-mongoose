@@ -91,7 +91,6 @@ describe('creature api', () => {
                     assert.deepEqual(saved, got.body);
                 });
         });
-
     });
 
 
