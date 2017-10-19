@@ -81,13 +81,15 @@ describe('creature api', () => {
             return request.post('/api/creatures')
                 .send(creature)
                 .then( res => {
-                    return request.put(`/api/creatures/:${res.body.id}`).send(newCreature);
+                    return request.put(`/api/creatures/${res.body._id}`).send(newCreature);
                 })
                 .then( res => {
-                    saved = res.body.id;
+                    saved = res.body;
                     return request.get(`/api/creatures/${saved._id}`);
                 })
-                .then( got => assert.equal(saved, got.body));
+                .then( got => {
+                    assert.deepEqual(saved, got.body);
+                });
         });
 
     });
