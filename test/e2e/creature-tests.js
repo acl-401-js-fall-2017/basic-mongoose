@@ -53,7 +53,7 @@ describe('creature api', () => {
 
     describe('DELETE', () => {
         
-        it.only('should delete a creature', () => {
+        it('should delete a creature', () => {
             return request.post('/api/creatures')
                 .send(creature)
                 .then( res => {
@@ -63,6 +63,33 @@ describe('creature api', () => {
                     assert.deepEqual(res.body, { removed: true });
                 });
         });
+    });
+
+    describe('PUT', () => {
+
+        it.only('should update existing, replacing all content with new content', () => {
+            const newCreature = {
+                name: 'boss hedgehog',
+                createType: 'beast',
+                power: 11,
+                toughness: 11,
+                abilities: 'trample',
+                protectionFrom: 'green',
+                diesToRemoval: false
+            };
+            let saved = null;
+            return request.post('/api/creatures')
+                .send(creature)
+                .then( res => {
+                    return request.put(`/api/creatures/:${res.body.id}`).send(newCreature);
+                })
+                .then( res => {
+                    saved = res.body.id;
+                    return request.get(`/api/creatures/${saved._id}`);
+                })
+                .then( got => assert.equal(saved, got.body));
+        });
+
     });
 
 
