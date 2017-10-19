@@ -8,18 +8,13 @@ This assignment has you practicing full CRUD for a validated resource using Expr
 Pick a resource, for example `unicorns`.
 
 General:
-1. Testing changes
-   * Create separate folders for `unit` and `e2e` tests in the `test` directory
-   * Modify `scripts` in `package.json`
-      * add `--recursive` to running mocha
-      * create separate `test:unit` and `test:e2e` scripts
-   * (Don't forget to modify test path or add `--recursive` to mocha debug
-2. Connecting to mongodb with mongoose:
-   * Create `lib/connect.js`
-   * Open connection mongoose in:
-      * `server.js`
-      * `test/e2e/db.js` 
-3. Create an express app that uses a `lib` folder with a `models` folder and a `routes` folder.
+* Create a single overall express app that uses a `lib` folder with a `models` folder and a `routes` folder.
+* Create separate folders for `unit` and `e2e` tests and remember to add `--recursive` to `mocha` (and add to
+debug as well!)
+* Create `lib/connect.js`
+* Open connection mongoose in:
+    * `server.js`
+    * `test/e2e/db.js` 
 
 For your resource:
 
@@ -31,12 +26,11 @@ For your resource:
         * Include a complex object property (a property that has subfields, like an address with city, state, zip)
         * An array property (a property that holds zero or more of some values)
 * Create HTTP REST routes:
-    * Write E2E API tests adn routes for all of the exposed routes
-        * require model in route
+    * Write E2E API tests for all of the exposed routes
     * Routes are:
         * `GET /resources` list ([]) of all the resources
         * `GET /resources/:id` return single resource object with that id (or 404 if doesn't exist)
-        * `POST /resources` add a new resource and return new entity from db with `_id`
+        * `POST /resources` add a new resource and return new entity from db with _id
         * `DELETE /resource/:id` Delete the resource with that id. Return `{ removed: <result> }` where `<result>`
         is `true` if it was deleted, otherwise `false`.
         
