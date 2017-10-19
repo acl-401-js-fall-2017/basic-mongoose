@@ -43,7 +43,7 @@ describe('states API', () => {
             });
     });
 
-    it.only('get all', () => {
+    it('get all', () => {
         const newVacation = {
             name: 'Oregon',
             address: {
