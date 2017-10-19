@@ -27,7 +27,7 @@ describe('creature api', () => {
     });
 
     describe('GET', () => {
-        it.only('gets creature from db', () => {
+        it('gets creature from db', () => {
             return request.post('/api/creatures')
                 .send(creature)
                 .then(({body}) => request.get(`/api/creatures/${body._id}`))
@@ -45,8 +45,6 @@ describe('creature api', () => {
                     return request.get(`/api/creatures/${saved._id}`);
                 })
                 .then( res => {
-                    console.log('got.name is', res.name);
-                    console.log('saved.name is', saved.name);
                     assert.equal(res.body.name, saved.name);
                 });
         });

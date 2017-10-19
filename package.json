@@ -19,10 +19,10 @@
     "mongoose": "^4.12.3"
   },
   "scripts": {
+    "mocha": "mocha --recursive",
+    "test": "npm run mocha",
     "lint": "eslint .",
     "pretest": "npm run lint",
-    "test": "npm run mocha",
-    "mocha": "mocha --recursive",
     "test:dev": "nodemon --exec 'npm run mocha'",
     "test:unit": "nodemon --exec 'npm run mocha -- ./test/unit'",
     "test:e2e": "nodemon --exec 'npm run mocha -- ./test/e2e'",
