@@ -78,5 +78,24 @@ describe('rockets rest API', () => {
             });
     });
 
+    it.skip('deletes saved db object with givin id', () => {
+        let skylab = {
+            name: 'skylab',
+            dateLaunched: new Date(),
+            launchNumber: 1
+        };
+        let dbRocket = null;
+        return request.post('/api/rockets')
+            .send(skylab)
+            .then(res => {
+                dbRocket = res.body;
+                return request.delete(`/api/rockets/${dbRocket._id}`);
+            })
+            .then(res => {
+                assert.deepEqual(res.body, { removed: true });
+            });
+    });
+     
+
 
 });
