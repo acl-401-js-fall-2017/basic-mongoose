@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
     "mocha": "mocha --recursive",
+    "test": "npm run mocha",
     "test:dev": "nodemon --exec \"npm run mocha\""
   },
   "repository": {
