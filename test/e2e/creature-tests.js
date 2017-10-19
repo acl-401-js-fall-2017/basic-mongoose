@@ -56,14 +56,13 @@ describe('creature api', () => {
         it.only('should delete a creature', () => {
             return request.post('/api/creatures')
                 .send(creature)
-                .then( res => request.delete(`/api/creatures/${res.body.id}`))
-                .then( () => request.get('/api/creatures/'))
                 .then( res => {
-                    console.log('res.body is', res.body);
-                    assert.equal(res.body, []);
+                    return request.delete(`/api/creatures/${res.body._id}`);
+                })
+                .then( res => {
+                    assert.deepEqual(res.body, { removed: true });
                 });
         });
-
     });
 
 
