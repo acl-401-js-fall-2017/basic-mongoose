@@ -24,14 +24,14 @@ describe('Footie Model', () => {
         assert.equal(errors['playerName'].kind, 'required');
     });
 
-    it.skip('Team must be Dortmund', () => {
-        const footie = new Footie({ 
-            teamInfo: [
-                { name: 'Dortmund' },
-                { name: 'MANCHESTER UNITED' }
-            ] 
-        });
-        const { errors } = footie.validateSync();
-        assert.equal(errors['teamInfo.0.name'].kind, 'enum');
-    });
+    // it.skip('Team must be Dortmund', () => {
+    //     const footie = new Footie({ 
+    //         teamInfo: [
+    //             { name: 'Dortmund' },
+    //             { name: 'MANCHESTER UNITED' }
+    //         ] 
+    //     });
+    //     const { errors } = footie.validateSync();
+    //     assert.equal(errors['teamInfo.0.name'].kind, 'enum');
+    // });
 });
