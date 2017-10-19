@@ -67,7 +67,7 @@ describe('creature api', () => {
 
     describe('PUT', () => {
 
-        it.only('should update existing, replacing all content with new content', () => {
+        it('should update existing, replacing all content with new content', () => {
             const newCreature = {
                 name: 'boss hedgehog',
                 createType: 'beast',
