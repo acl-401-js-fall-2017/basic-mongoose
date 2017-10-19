@@ -72,12 +72,26 @@ describe('states API', () => {
             .then(res => {
                 assert.deepEqual(res.body, saved);
             });
-
-
     });
 
+    it('delete by id', () => {
+        let state = null;
+        return request.post('/api/states')
+            .send(states)
+            .then(res => {
+                state = res.body;
+                return request.delete(`/api/states/${state._id}`);
+            })
+            .then(res => {
+                assert.deepEqual(res.body, {removed:true});
+            });
+    });
 
-
-
+    it.only('delete but returns false because it did not delete', () => {
+        return request.delete('/api/states/59e808d8be824c1a0e63c302')
+            .then(res => {
+                assert.deepEqual(res.body, {removed:false});
+            });
+    });
 
 });
