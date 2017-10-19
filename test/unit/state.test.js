@@ -18,8 +18,8 @@ describe('State Model', () => {
         assert.equal(state.validateSync(), undefined);
     });
 
-    it('name must be OR or WA', () => {
-        const state = new State({name: 'orygun'}); //, {name: 'Oregon'})
+    it('name must be OR, CA or WA', () => {
+        const state = new State({name: 'orygun'}); 
         const { errors } = state.validateSync();
         assert.equal(errors.name.kind, 'enum');
     });
@@ -34,5 +34,11 @@ describe('State Model', () => {
         const state = new State({attractions:[{cost: -3}]});
         const { errors } = state.validateSync();
         assert.equal(errors['attractions.0.cost'].kind, 'min');
+    });
+
+    it('name required field', () => {
+        const state = new State({}); 
+        const { errors } = state.validateSync();
+        assert.equal(errors.name.kind, 'required');
     });
 });

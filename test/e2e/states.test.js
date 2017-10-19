@@ -87,11 +87,13 @@ describe('states API', () => {
             });
     });
 
-    it.only('delete but returns false because it did not delete', () => {
+    it('delete but returns false because it did not delete', () => {
         return request.delete('/api/states/59e808d8be824c1a0e63c302')
             .then(res => {
                 assert.deepEqual(res.body, {removed:false});
             });
     });
+
+    
 
 });
