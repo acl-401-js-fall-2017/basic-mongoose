@@ -8,7 +8,12 @@ describe('Cartoon Model', ()=> {
     it('good model', () => {
         const cartoon = new Cartoon({
             name: 'Rugrats',
-            releaseYear: 1991 
+            releaseYear: 1991,
+            leadingCharacters:[
+                {name: 'Tommy', description: 'Tommy is part Christian and part Jewish, and the former born head leader of the babies.'},
+                {name: 'Chuckie', description: 'Despite his cuteness, Chuckie is pessimistic and scares easily'},
+                {name: 'Angelica', description: 'Angelica is the bratty daughter of Drew and Charlotte Pickles'}
+            ]
         });
         assert.equal(cartoon.validateSync(), undefined);
     });
