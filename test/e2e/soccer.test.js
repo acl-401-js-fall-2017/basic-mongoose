@@ -1,8 +1,8 @@
-const mongoose = require('mongoose');
-const assert = require('chai').assert;
+// const mongoose = require('mongoose');
+// const assert = require('chai').assert;
 
-describe('soccer API' , () => {
+// describe('soccer API' , () => {
 
-    beforeEach(() => mongoose.connection.dropDatabase())
+//     beforeEach(() => mongoose.connection.dropDatabase())
 
-});
+// });
