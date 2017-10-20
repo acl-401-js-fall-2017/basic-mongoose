@@ -43,20 +43,18 @@ describe ('cities API CRUD', () => {
             });
     });
 
-    it('Gets all posted cities', () => {
+    it.only('Gets all posted cities', () => {
         return request.post('/api/cities')
+        
         //Question: why cant i send both cities like send(portland, paris)
-            .send(portland)
-            .then (() => {
-                return request.post('/api/cities')
-                    .send(paris);
-            })
+            .send([portland, paris])
             .then (() => {
                 return request.get('/api/cities');
             })
             .then(res => {
-                assert.equal(res.body[1].name, paris.name);
-                assert.equal(res.body[0].name, portland.name);
+                assert.equal(res.body.length, 2);
+                assert.ok(res.body.find(c=> c.name === portland.name));
+                assert.ok(res.body.find(c=> c.name === paris.name));
             });
     });
 
