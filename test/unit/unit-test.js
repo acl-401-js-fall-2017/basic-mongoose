@@ -23,8 +23,6 @@ describe('City model validation', () => {
             ]
         });
         assert.equal(portland.validateSync(), undefined);
-
-
     });
 
     it( 'should require a name', ()=> {
@@ -33,7 +31,6 @@ describe('City model validation', () => {
             population: 10001,
         });
         assert.equal(nameless.validateSync().errors['name'].kind, 'required' );
-
     });
 
     it('should only validate one of predetermined types of attractions', () => {
@@ -52,9 +49,7 @@ describe('City model validation', () => {
                 }
             ]
         });
-        console.log(paris.validateSync().errors['attractions.0.type']);
         assert.equal(paris.validateSync().errors['attractions.0.type'].kind, 'enum');
-
     });
 
 });

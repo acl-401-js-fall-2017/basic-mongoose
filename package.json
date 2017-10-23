@@ -23,6 +23,7 @@
   "scripts": {
     "lint": "eslint .",
     "pretest": "npm run lint",
+    "test": "npm run mocha",
     "mocha": "mocha --recursive",
     "testU": "npm run mocha -- ./test/unit",
     "testE2E": "npm run mocha -- ./test/e2e"

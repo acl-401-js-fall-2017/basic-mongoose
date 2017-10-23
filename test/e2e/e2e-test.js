@@ -2,7 +2,6 @@ const request = require('./request');
 const mongoose = require('mongoose');
 const { assert } = require('chai');
 
-
 describe ('cities API CRUD', () => {
 
     beforeEach(() => mongoose.connection.dropDatabase());
@@ -32,8 +31,6 @@ describe ('cities API CRUD', () => {
         population: 5000000,
     }; 
 
-
-
     it('Post should save with id', () => {
         return request.post('/api/cities')
             .send(portland)
@@ -43,10 +40,8 @@ describe ('cities API CRUD', () => {
             });
     });
 
-    it.only('Gets all posted cities', () => {
+    it('Gets all posted cities', () => {
         return request.post('/api/cities')
-        
-        //Question: why cant i send both cities like send(portland, paris)
             .send([portland, paris])
             .then (() => {
                 return request.get('/api/cities');
@@ -58,18 +53,36 @@ describe ('cities API CRUD', () => {
             });
     });
 
-    it.skip('Gets entries by id', () => { 
+    it('Gets entries by id', () => { 
         return request.post('/api/cities')
             .send(portland)
             .then( (res)=>{
                 return request.get(`/api/cities/${res.body._id}`);
             })
             .then((res) => {
-                assert.equal(res.name, portland.name);
+                assert.equal(res.body.name, portland.name);
             });
     });
 
+    it('delets by id', () => {
+        return request.post('/api/cities')
+            .send(portland)
+            .then( res => {
+                return request.delete(`/api/cities/${res.body._id}`);
+            })
+            .then (res => {
+                assert.equal(res.body.name, portland.name);
+            });
+    });
 
-
+    it('updates by id and return updated version', () => {
+        return request.post('/api/cities')
+            .send(portland)
+            .then(res => {
+                return request.put(`/api/cities/${res.body._id}`)
+                    .send({name: 'updated'});
+            })
+            .then( updated => assert.equal(updated.body.name, 'updated'));
+    });
 
 });
