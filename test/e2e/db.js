@@ -1,5 +1,5 @@
 const connect = require('../../lib/connect');
-const url = 'mongodb://localhost:27017/animals';
+const url = 'mongodb://localhost:27017/cartoons';
 const mongoose = require('mongoose');
 
 before(() => connect(url));    
