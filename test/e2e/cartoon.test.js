@@ -100,7 +100,7 @@ describe('Cartoons API', ()=>{
             );
     });
 
-    it('updates an item', () => {
+    it('Should update an item with id BONUS', () => {
         const pokemonn = {
             name: 'Pokemonnnn',
             releaseYear: 1997
