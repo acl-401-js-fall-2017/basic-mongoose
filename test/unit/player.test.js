@@ -24,14 +24,14 @@ describe('Player Model', () => {
         assert.equal(errors['name'].kind, 'required');
     });
 
-    // it.skip('Team must be Dortmund', () => {
-    //     const player = new Player({ 
-    //         teamInfo: [
-    //             { name: 'Dortmund' },
-    //             { name: 'MANCHESTER UNITED' }
-    //         ] 
-    //     });
-    //     const { errors } = player.validateSync();
-    //     assert.equal(errors['teamInfo.0.name'].kind, 'enum');
-    // });
+    it.only('Team must be Dortmund', () => {
+        const player = new Player({ 
+            teamInfo: [
+                { name: 'Dortmund' },
+                { name: 'MANCHESTER UNITED' }
+            ] 
+        });
+        const { errors } = player.validateSync();
+        assert.equal(errors['teamInfo.1.name'].kind, 'enum');
+    });
 });
