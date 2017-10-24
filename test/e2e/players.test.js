@@ -37,24 +37,25 @@ describe('player API', () => {
             });
     });
 
-    // it('gets by id and returns a 404 with a bad id', () => {
-    //     const player = {
-    //         name: 'Christian Pulisic',
-    //         position: 'Midfielder',
-    //         teamInfo: {
-    //             name: 'Dortmund',
-    //             yearStarted: 2015
-    //         },
-    //         number: 22
-    //     };
-    //     return request.post('/api/players')
-    //         .send(player)
-    //         .then(res => {
-    //             return request.put(`/api/players/${res.body._id}`).send(update);
-    //         })
-    //         .then(res => {
-    //             assert.equal(res.body.name, update.name);
-    //         });
-    // });
+    it('updates player', () => {
+        const player = {
+            name: 'Christian Pulisic',
+            position: 'Midfielder',
+            teamInfo: {
+                name: 'Dortmund',
+                yearStarted: 2015
+            },
+            number: 22
+        };
+        return request.post('/api/players')
+            .send(player)
+            .then(res => {
+                return request.put(`/api/players/${res.body._id}`)
+                    .send({name: 'Bobby Wood'});
+            })
+            .then(res => {
+                assert.equal(res.body.name, 'Bobby Wood');
+            });
+    });
 
 });
