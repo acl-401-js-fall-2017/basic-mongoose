@@ -24,7 +24,7 @@ describe('Player Model', () => {
         assert.equal(errors['name'].kind, 'required');
     });
 
-    it.only('Team must be Dortmund', () => {
+    it('Team must be Dortmund', () => {
         const player = new Player({ 
             teamInfo: [
                 { name: 'Dortmund' },
