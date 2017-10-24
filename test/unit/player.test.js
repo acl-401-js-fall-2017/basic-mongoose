@@ -1,12 +1,12 @@
 const { assert } = require('chai');
-const Footie = require('../../lib/models/footie');
+const Player = require('../../lib/models/player');
 
-describe('Footie Model', () => {
+describe('Player Model', () => {
 
     it('validates a good model', () => {
-        const footie = new Footie({
-            playerName: 'Christian Pulisic',
-            position: 'midfielder',
+        const player = new Player({
+            name: 'Christian Pulisic',
+            position: 'Midfielder',
             teamInfo: {
                 name: 'Dortmund',
                 yearStarted: 2015
@@ -14,24 +14,24 @@ describe('Footie Model', () => {
             number: 22
         });
 
-        assert.ok(!footie.validateSync());
+        assert.ok(!player.validateSync());
     });
 
     it('required fields', () => {
-        const footie = new Footie({});
-        const { errors } = footie.validateSync();
+        const player = new Player({});
+        const { errors } = player.validateSync();
 
-        assert.equal(errors['playerName'].kind, 'required');
+        assert.equal(errors['name'].kind, 'required');
     });
 
     // it.skip('Team must be Dortmund', () => {
-    //     const footie = new Footie({ 
+    //     const player = new Player({ 
     //         teamInfo: [
     //             { name: 'Dortmund' },
     //             { name: 'MANCHESTER UNITED' }
     //         ] 
     //     });
-    //     const { errors } = footie.validateSync();
+    //     const { errors } = player.validateSync();
     //     assert.equal(errors['teamInfo.0.name'].kind, 'enum');
     // });
 });

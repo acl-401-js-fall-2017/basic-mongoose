@@ -7,7 +7,7 @@ describe('player API', () => {
     beforeEach(() => mongoose.connection.dropDatabase());
 
     const player = {
-        playerName: 'Christian Pulusic',
+        name: 'Christian Pulisic',
         position: 'Midfielder',
         teamInfo: {
             name: 'Dortmund',
@@ -39,7 +39,7 @@ describe('player API', () => {
 
     // it('gets by id and returns a 404 with a bad id', () => {
     //     const player = {
-    //         name: 'Christian Pulusic',
+    //         name: 'Christian Pulisic',
     //         position: 'Midfielder',
     //         teamInfo: {
     //             name: 'Dortmund',
