@@ -11,7 +11,7 @@ describe('Cartoons API', ()=>{
         releaseYear: 1991
     };
 
-    it('Saves a cartoon with id', ()=>{
+    it('Should save a cartoon with an id', ()=>{
 
         return request.post('/api/cartoons')
             .send(rugRats)
@@ -42,7 +42,7 @@ describe('Cartoons API', ()=>{
 
     });
 
-    it('get by id returns 404 for bad id', () => {
+    it('gte cartoon with bad id should return 404 for bad id', () => {
         return request.get('/api/cartoons/59dfeaeb083bf9beecc97ce8')
             .then(
                 () => { throw new Error('Unexpected successful response'); },
@@ -52,7 +52,7 @@ describe('Cartoons API', ()=>{
             );
     });
 
-    it('gets all cartoons', () => {
+    it('Should gets all cartoons', () => {
         const rugRats = {
             name: 'Rugrats',
             releaseYear: 1991
@@ -80,7 +80,7 @@ describe('Cartoons API', ()=>{
             });
     });
 
-    it('delete by id', () => {
+    it('should delete a cartoon with id', () => {
         let cartoon = null;
         return request.post('/api/cartoons')
             .send(rugRats)
@@ -98,6 +98,29 @@ describe('Cartoons API', ()=>{
                     assert.equal(err.status, 404);    
                 }
             );
+    });
+
+    it('Should update an item with id BONUS', () => {
+        const pokemonn = {
+            name: 'Pokemonnnn',
+            releaseYear: 1997
+        };
+
+        let savedCartoon = null;
+
+        return request.post('/api/cartoons')
+            .send(pokemonn)
+            .then(res => savedCartoon = res.body)
+            .then(() => {
+                pokemonn.name = 'pokemon';
+                return request
+                    .put(`/api/cartoons/${savedCartoon._id}`)
+                    .send( pokemonn );
+            })
+            .then( res => {
+                assert.deepEqual(res.body.nModified === 1, true);
+            });
+
     });
 
 });

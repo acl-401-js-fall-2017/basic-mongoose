@@ -5,7 +5,7 @@ const assert = chai.assert;
 
 describe('Cartoon Model', ()=> {
 
-    it('good model', () => {
+    it('Validates a good model model', () => {
         const cartoon = new Cartoon({
             name: 'Rugrats',
             releaseYear: 1991,
@@ -18,11 +18,12 @@ describe('Cartoon Model', ()=> {
         assert.equal(cartoon.validateSync(), undefined);
     });
 
-    it('bad model', () => {
+    it('Checks for required fields(name: required string, releaseYear: number) ', () => {
         const cartoon = new Cartoon({
-            name: 1991,
+            
             releaseYear: 'Rugrats'
         });
+        assert.deepEqual(cartoon.validateSync().errors.name.kind, 'required');
         assert.deepEqual(cartoon.validateSync().errors.releaseYear.kind, 'Number'); 
     });
 
