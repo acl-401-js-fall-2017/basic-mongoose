@@ -30,7 +30,6 @@ describe('rockets rest API', () => {
             launchNumber: 1
         };
 
-
         let dbRocket = null;
         return request.post('/api/rockets')
             .send(skylab)
@@ -95,7 +94,4 @@ describe('rockets rest API', () => {
                 assert.deepEqual(res.body, { removed: true });
             });
     });
-     
-
-
 });
