@@ -30,7 +30,6 @@ describe('rockets rest API', () => {
             launchNumber: 1
         };
 
-
         let dbRocket = null;
         return request.post('/api/rockets')
             .send(skylab)
@@ -78,7 +77,7 @@ describe('rockets rest API', () => {
             });
     });
 
-    it.skip('deletes saved db object with givin id', () => {
+    it('deletes saved db object with givin id', () => {
         let skylab = {
             name: 'skylab',
             dateLaunched: new Date(),
@@ -95,7 +94,4 @@ describe('rockets rest API', () => {
                 assert.deepEqual(res.body, { removed: true });
             });
     });
-     
-
-
 });
