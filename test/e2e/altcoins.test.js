@@ -30,6 +30,19 @@ describe('altcoins API', () => {
             });
     });
 
+    it('fails ons save with validation errors', () => {
+        return request.post('/api/altcoins')
+            .send({})
+            .then(
+                () => { throw new Error('unexpected successful response');},
+                err => {
+                    assert.equal(err.status, 400);
+                    const body = err.response.body;
+                    assert.ok(Object.keys(body.errors).length);
+                }
+            );
+    });
+
     it('get by id', () => {
         let altcoin = null;
         return request.post('/api/altcoins')
@@ -64,11 +77,36 @@ describe('altcoins API', () => {
             );
     });
 
-
-
+    it('gets all altcoins', () => {
+        const litecoin = {
+            name: 'Litecoin',
+            ticker: 'LTC',
+            price: {
+                USD: 55,
+                hr24: {
+                    percentChange: 3.9,
+                    volumeUSD: 144938000
+                }
     
+            },
+            hash: 'Scrypt'
+        };
+       
+        const posts = [ethereum, litecoin].map(altcoin => {
+            return request.post('/api/altcoins')
+                .send(altcoin)
+                .then(res => res.body);
+        });
 
-
-
-    
+        let saved = null;
+        return Promise.all(posts)
+            .then(_saved => {
+                saved = _saved;
+                return request.get('/api/altcoins');
+            })
+            .then(res => {
+                assert.deepEqual(res.body, saved);
+            });
+        
+    });
 });
