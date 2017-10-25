@@ -44,6 +44,26 @@ describe('altcoins API', () => {
 
     });
 
+    it('deleted by id', () => {
+        let altcoin = null;
+        return request.post('/api/altcoins')
+            .send(ethereum)
+            .then(res => {
+                altcoin = res.body;
+                return request.delete(`/api/altcoins${altcoin._id}`);
+            })
+            .then(res => {
+                assert.deepEqual(res.body, {removed: true});
+                return request.get(`/api/altcoins${altcoin._id}`);
+            })
+            .then(
+                () => { throw new Error ('Unexpected successful response');},
+                err => {
+                    assert.equal(err.status, 404);
+                }
+            );
+    });
+
 
 
     
