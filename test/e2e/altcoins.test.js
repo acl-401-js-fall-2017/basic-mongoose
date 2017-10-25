@@ -1,3 +1,4 @@
+
 const request = require('./request');
 const mongoose = require('mongoose');
 const assert = require('chai').assert;
@@ -28,4 +29,26 @@ describe('altcoins API', () => {
                 assert.equal(altcoin.name, ethereum.name);
             });
     });
+
+    it('get by id', () => {
+        let altcoin = null;
+        return request.post('/api/altcoins')
+            .send(ethereum)
+            .then(res => {
+                altcoin = res.body;
+                return request.get(`/api/altcoins/${altcoin._id}`);
+            })
+            .then(res => {
+                assert.deepEqual(res.body, altcoin);
+            });
+
+    });
+
+
+
+    
+
+
+
+    
 });
